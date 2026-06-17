@@ -19,14 +19,14 @@
     register: ec2_output
     #when: action == "create"
 
-  - name: print output
-    debug:
-      msg: "{{ ec2_output }}"
-
-  # - name: create route53 record
+  # - name: print output
   #   debug:
-  #     msg: "Instance Name: {{ item.item }} PrivateIP: {{ item.instances[0].private_ip_address }}"
-  #   loop: "{{ ec2_output.results }}"
+  #     msg: "{{ ec2_output }}"
+
+  - name: create route53 record
+    debug:
+      msg: "Instance Name: {{ item.item }} PrivateIP: {{ item.instances[0].private_ip_address }}"
+    loop: "{{ ec2_output.results }}"
 
   # - name: create r53 records
   #   amazon.aws.route53:
